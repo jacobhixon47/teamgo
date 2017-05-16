@@ -1,0 +1,14 @@
+$('#initial-team-greeting').slideUp();
+$('#my-sidebar-content').empty();
+$('#my-sidebar-content').append("<%= j render 'form' %>");
+$('#my-sidebar-content').fadeIn(1000);
+
+$('#new_channel .members-select').hide();
+$("input:radio[name='channel[is_public]']").change(function() {
+  var selected = $('input:checked[name="channel[is_public]"]').val();
+  if (selected == "false" ) {
+    $("#new_channel .members-select").slideDown(200);
+  } else if ( selected == "true" ) {
+    $("#new_channel .members-select").slideUp(200);
+  }
+});

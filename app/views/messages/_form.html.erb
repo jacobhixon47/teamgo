@@ -1,0 +1,6 @@
+<%= form_for [channel, message], class: 'box-pop message-form f-row responsive', remote: true do |f| %>
+  <%= f.text_field :content, class: 'textarea-light f-col-4 flex-center message-form-input', placeholder: 'Message' %>
+  <div class="actions">
+    <%= f.submit "Send", class: 'btn-pop f-col-1 flex-center send-message-button' %>
+  </div>
+<% end %>

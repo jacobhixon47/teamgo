@@ -1,0 +1,26 @@
+<% if @team.errors.any? %>
+  <h3>Oops there were some errors. Please try again:</h3>
+  <ul>
+    <% @team.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="hero">
+  <%= image_tag "hills.jpg", class: 'hero-image form-hero login-hero' %>
+  <div class="hero-content">
+    <div class="hero-body">
+      <%= form_for @team, class: 'box-pop' do |f| %>
+        <%= devise_error_messages! %>
+        <header class="form-header-pop">New Team</header>
+        <%= f.text_field :name, class: 'input-light', placeholder: 'Team Name' %>
+        <div class="actions">
+          <div class="f-row">
+            <%= f.submit "Create Team", class: 'btn-pop f-col-1 flex-center' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

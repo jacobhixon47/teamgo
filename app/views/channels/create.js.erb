@@ -1,0 +1,7 @@
+<% if @channel.is_public? %>
+  $('#public-channels-list').append('<li><%= j link_to @channel.name, team_channel_path(@team, @channel), remote: true %></li>');
+<% elsif !@channel.is_public? %>
+  $('#private-channels-list').append('<li><%= j link_to @channel.name, team_channel_path(@team, @channel), remote: true %></li>');
+<% end %>
+$('#my-sidebar-content').slideUp(1000);
+$('#my-sidebar-content').empty();

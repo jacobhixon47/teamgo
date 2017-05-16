@@ -1,0 +1,32 @@
+<div class="hero">
+  <%= image_tag "city-2.jpg", class: 'hero-image form-hero' %>
+  <div class="hero-content">
+    <div class="hero-body">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'bg-t-dark') do |f| %>
+        <%= devise_error_messages! %>
+        <header>
+          <h1 class="text-pop">Sign Up</h1>
+        </header>
+          <%= f.text_field :username, autofocus: true, class: 'input-light', placeholder: 'Username' %>
+
+          <%= f.email_field :email, class: 'input-light', placeholder: 'Email' %>
+
+          <!-- <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br/> -->
+          <%= f.password_field :password, autocomplete: "off", class: 'input-light', placeholder: 'Password (6 characters minimum)' %>
+
+
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: 'input-light', placeholder: 'Confirm Password' %>
+
+
+        <div class="actions">
+          <div class="f-row">
+            <%= f.submit "Sign Up", class: 'btn-pop f-col-1 flex-center' %>
+            <%= link_to "Login", new_user_session_path, class: "btn-ghost-light f-col-1 flex-center" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<% if @channel.errors.any? %>
+  <h3>Oops there were some errors. Please try again:</h3>
+  <ul>
+    <% @channel.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [@team, @channel], class: 'box-pop', remote: true do |f| %>
+  <%= devise_error_messages! %>
+  <header class="form-header-pop">New Channel</header>
+  <div class="channel-radio-buttons-section">
+    <div class="radio-light">
+      <%= f.radio_button :is_public, true, checked: true, class: 'radio-group' %>
+      <%= f.label :is_public, "Public", :value => true  %>
+    </div>
+    <div class="radio-light">
+      <%= f.radio_button :is_public, false, class: 'radio-group' %>
+      <%= f.label :is_public, "Private", :value => false %>
+    </div>
+  </div><br>
+  <%= f.text_field :name, class: 'input-light', placeholder: 'Channel Name' %>
+  <div class="members-select">
+    <div class="f-row responsive">
+      <div class="f-col-1 flex-center">
+        <h4 class="text-light">Add Members</h4>
+      </div>
+      <div class="f-col-3">
+        <div class="f-row responsive members-select-list">
+          <% @team.users.each do |user| %>
+            <div class="f-col-2 flex-center">
+              <div class="checkbox-light">
+                <%= check_box_tag "member_ids[]", user.id, false, :id => user.id %>
+                <%= label_tag user.id, user.username, false %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <div class="f-row">
+      <%= f.submit "Create Channel", class: 'btn-pop f-col-1 flex-center' %>
+    </div>
+  </div>
+<% end %>

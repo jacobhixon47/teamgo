@@ -1,0 +1,30 @@
+<div class="side-bar bg-pop" id="my-team-sidebar">
+  <head>
+    <h1 class="text-light"><%= @team.name %></h1>
+  </head><br><hr><br>
+  <div class="f-row responsive">
+    <%= link_to "+ New Channel", new_team_channel_path(@team), remote: true, class: 'f-col-1 btn-ghost-light' %>
+  </div>
+  <ul class="underline-light" id="public-channels-list">
+    <h4 class="text-light">Public Channels</h4>
+    <% if @team.channels.where(is_public: true).any?  %>
+      <% @team.channels.where(is_public: true).each do |channel| %>
+        <li><%= link_to channel.name, team_channel_path(@team, channel), remote: true %></li>
+      <% end %>
+    <% end %>
+  </ul>
+  <ul class="underline-light" id="private-channels-list">
+    <h4 class="text-light">Private Channels</h4>
+    <% if @team.channels.where(is_public: false).any?  %>
+      <% @team.channels.where(is_public: false).each do |channel| %>
+          <li><%= link_to channel.name, team_channel_path(@team, channel), remote: true %></li>
+      <% end %>
+    <% end %>
+  </ul>
+
+</div>
+<div class="side-bar-content" style="text-align: center;">
+  <div id="my-sidebar-content">
+    <h1 id="initial-team-greeting">Please select a channel, or create a new one :)</h1>
+  </div>
+</div>

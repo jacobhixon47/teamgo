@@ -1,0 +1,30 @@
+// --------- Business Logic -----------
+
+function loadMessages() {
+  $('#my-sidebar-content').empty();
+  $('#my-sidebar-content').append('<%= j render "messages/messages_section" %>');
+  $('#messages-list').append('<%= j render "messages/messages_list" %>');
+}
+
+// var scrolled = false;
+function updateScroll() {
+  var element = document.getElementById("messages-section");
+  setTimeout(function() {
+    element.scrollTop = element.scrollHeight;
+  }, 100);
+};
+
+
+// -------- Interface logic ---------
+
+$('#initial-team-greeting').slideUp(500);
+$.when(loadMessages()).then(updateScroll());
+$('#my-sidebar-content').fadeIn(1000);
+// startAutoScrollChecker();
+setInterval(function(){
+  updateScroll();
+}, 5000);
+
+// $('.messages-section').on('scroll', function() {
+//   scrolled = true;
+// });

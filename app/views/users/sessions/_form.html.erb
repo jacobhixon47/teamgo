@@ -1,0 +1,32 @@
+<div class="hero">
+  <%= image_tag "hills.jpg", class: 'hero-image form-hero login-hero' %>
+  <div class="hero-content">
+    <div class="hero-body">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'bg-t-dark') do |f| %>
+        <%= devise_error_messages! %>
+        <header>
+          <h1 class="text-light">Login</h1>
+        </header>
+        <%= f.email_field :email, class: 'input-light', placeholder: 'Email' %>
+
+        <%= f.password_field :password, autocomplete: "off", class: 'input-light', placeholder: 'Password' %>
+
+        <% if devise_mapping.rememberable? -%>
+          <div class="checkbox-light" style="text-align: center;">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end -%>
+
+
+        <div class="actions">
+          <div class="f-row">
+            <%= f.submit "Login", class: 'btn-pop f-col-1 flex-center' %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "btn-ghost-light f-col-1 flex-center" %>
+          </div>
+        </div>
+      <% end %>
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+</div>

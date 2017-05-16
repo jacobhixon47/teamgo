@@ -1,0 +1,46 @@
+<div class="hero">
+  <%= image_tag "sea-windy.jpg", class: 'hero-image' %>
+  <div class="hero-content">
+    <header>
+      <h1 class="text-pop">Welcome to TeamGo</h1>
+    </header>
+    <div class="hero-body">
+      <h4 class="text-light text-center">Your new favorite team workspace.</h4>
+      <br>
+      <div class="f-row responsive">
+        <form>
+          <button class="btn-pop" type="button" id="get-started-button-home">Get Started</button>
+          <button class="btn-pop" type="button" id="learn-more-button-home">Learn More</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="hero-slideshow" id="home-slideshow">
+  <div class="images">
+    <%= image_tag "forest.jpg", class: "1 active" %>
+    <%= image_tag "girl.jpg", class: "2" %>
+    <%= image_tag "palms-dark.png", class: "3" %>
+    <%= image_tag "girl-2.jpg", class: "4" %>
+  </div>
+  <div class="right-arrow"></div>
+  <div class="left-arrow"></div>
+  <div class="hero-text text-center">
+    <h2 class="text-light">Slideshow Text</h2>
+    <h6 class="text-light">This is more text lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h6>
+    <div class="circles">
+      <div class="circle 1 active"></div>
+      <div class="circle 2"></div>
+      <div class="circle 3"></div>
+      <div class="circle 4"></div>
+    </div>
+  </div><br>
+  <button class="btn-dark slideshow-signup" type="button">Sign Up</button>
+</div>
+
+<div id="signup-form">
+  <%= render "users/registrations/form" %>
+</div>
+
+<button class="btn-dark back-to-top" type="button">Back To Top</button>

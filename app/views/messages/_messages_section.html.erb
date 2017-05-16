@@ -1,0 +1,6 @@
+<h2><i><%= @channel.name %></i></h2>
+<div class="messages-section" id="messages-section">
+<ul class="messages-list" id="messages-list">
+</ul>
+</div>
+<%= render partial: 'messages/form', locals: {message: @message, channel: @channel} %>

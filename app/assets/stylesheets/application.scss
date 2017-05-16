@@ -1,0 +1,206 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+@import "reset";
+@import "global";
+@import "mediaQueries";
+@import "fonts";
+@import "grid";
+@import "hero";
+@import "nav";
+@import "sidebar";
+@import "buttons";
+@import "forms";
+@import "footer";
+@import "helpers";
+@import "animations";
+
+
+$dark: #272827;
+$dark-grey: #3C3F42;
+$md-grey: #869293;
+$light: #E3E6E8;
+$color-pop: #26596C;
+$pop-green: #287D48;
+$pop-orange: #AC4C38;
+
+$small-box-shadow : 0px 2px 2px #999999;
+
+
+#learn-more-button-home {
+  background-color: $pop-green;
+  border-color: $pop-green;
+  &:hover {
+    background: darken($pop-green, 10%);
+    border-color: darken($pop-green, 10%);
+  }
+}
+
+// -------- Navigation Bar Styling ------------
+#nav-brand-name {
+  padding-top: 0.5em;
+  a:hover {
+    color: inherit;
+  }
+}
+
+.teams.show #nav-brand-name {
+  color: $light;
+}
+
+.nav-light {
+  box-shadow: $small-box-shadow;
+  .menu-items li {
+    &:hover {
+      background-color: darken($light, 10%);
+    }
+    a:hover {
+      background-color: darken($light, 10%);
+    }
+  }
+}
+.nav-ghost-pop, .nav-ghost-light {
+  min-width: 100vw;
+  border: none;
+}
+.nav-ghost-pop .menu-items li:hover {
+  background-color: darken(rgba(250,250,250,0.3), 10%);
+  a {
+    background-color: darken(rgba(250,250,250,0.3), 10%);
+  }
+}
+.menu-items li {
+  padding: 0;
+}
+.menu-items li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding-top: 1.3em;
+  padding-left: 1em;
+  padding-right: 1em;
+  text-align: center;
+}
+// ---------------------------------
+
+
+button a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#home-slideshow, #signup-form {
+  display: none;
+}
+
+// --------- Ghost scroll buttons -------------
+.back-to-top {
+  display: none;
+	position: fixed;
+	z-index: 999;
+	right: 20px;
+	bottom: 20px;
+  background-color: transparent;
+  border: 3px $pop-orange solid;
+  color: $light;
+  font-weight: 500;
+  &:hover {
+    background-color: $pop-orange;
+    border-color: $pop-orange;
+  }
+}
+.slideshow-signup {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 20px;
+  bottom: 20px;
+  background-color: transparent;
+  border: 3px $pop-orange solid;
+  color: $light;
+  font-weight: 500;
+  &:hover {
+    background-color: $pop-orange;
+    border-color: $pop-orange;
+  }
+}
+
+.dropdown-item:hover {
+  background-color: darken($light, 10%) !important;
+  color: $dark !important;
+}
+
+.sub-dropdown-menu li {
+  background-color: darken($light, 7%);
+}
+
+#my-team-sidebar {
+  display: none;
+}
+
+#sidebar-brand {
+  color: $light;
+}
+
+.side-bar-content, .side-bar {
+  max-height: 100vh;
+}
+
+.side-bar-content {
+  background: image-url('bw-city.jpg');
+  background-size: cover;
+  // background-color: darken($light, 10%);
+}
+
+#my-sidebar-content {
+  display: none;
+}
+
+// Channels
+#new_channel {
+  padding-top: 5%;
+  margin-top: 5%;
+  background-color: rgba(50, 50, 50, 0.5);
+}
+
+.channel-radio-buttons-section div {
+  display: inline !important;
+}
+
+.members-select-list {
+  background: darken(rgba(50, 50, 50, 0.5), 10%);
+  max-height: 19vh !important;
+  overflow-y: scroll;
+}
+
+.messages-section {
+  max-height: 50vh;
+  min-height: 50vh;
+  overflow-y: scroll;
+  background-color: darken($light, 40%);
+}
+
+.current-user-message-col {
+  text-align: right;
+  color: lighten($pop-green, 40%);
+  // box-shadow: $small-box-shadow;
+  border-bottom: 1px $light solid;
+}
+
+.foreign-user-message-col {
+  text-align: left;
+  color: lighten($color-pop, 40%);
+  // box-shadow: $small-box-shadow;
+  border-bottom: 1px $light solid;
+}
