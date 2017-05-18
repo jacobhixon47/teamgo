@@ -11,7 +11,11 @@ class ChannelsController < ApplicationController
   def create
     @team = Team.find(params[:team_id])
     @channel = @team.channels.new(channel_params)
-    @member_ids = params[:member_ids]
+    if params[:member_ids]
+      @member_ids = params[:member_ids]
+    else
+      @member_ids = []
+    end
     @channel.member_ids = @member_ids
     @channel.member_ids.push(current_user.id)
     if @channel.save
@@ -37,6 +41,6 @@ class ChannelsController < ApplicationController
 
 private
   def channel_params
-    params.require(:channel).permit(:name, :is_public, :member_ids)
+    params.require(:channel).permit(:name, :is_public)
   end
 end
