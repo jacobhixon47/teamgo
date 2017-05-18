@@ -8,10 +8,12 @@ function loadMessages() {
 
 // var scrolled = false;
 function updateScroll() {
-  var element = document.getElementById("messages-section");
-  setTimeout(function() {
-    element.scrollTop = element.scrollHeight;
-  }, 100);
+  if (document.getElementById("messages-section") !== null) {
+    var element = document.getElementById("messages-section");
+    setTimeout(function() {
+      element.scrollTop = element.scrollHeight;
+    }, 100);
+  }
 };
 
 
@@ -20,8 +22,8 @@ function updateScroll() {
 $('#initial-team-greeting').slideUp(500);
 $.when(loadMessages()).then(updateScroll());
 $('#my-sidebar-content').fadeIn(1000);
-// startAutoScrollChecker();
-setInterval(function(){
+
+var scrollInterval = setInterval(function(){
   updateScroll();
 }, 5000);
 
