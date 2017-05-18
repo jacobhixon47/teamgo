@@ -29,12 +29,14 @@
       <div class="f-col-3">
         <div class="f-row responsive members-select-list">
           <% @team.users.each do |user| %>
-            <div class="f-col-2 flex-center">
-              <div class="checkbox-light">
-                <%= check_box_tag "member_ids[]", user.id, false, :id => user.id %>
-                <%= label_tag user.id, user.username, false %>
+            <% if user.id != current_user.id %>
+              <div class="f-col-2 flex-center">
+                <div class="checkbox-light">
+                  <%= check_box_tag "member_ids[]", user.id, false, :id => user.id %>
+                  <%= label_tag user.id, user.username, false %>
+                </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         </div>
       </div>

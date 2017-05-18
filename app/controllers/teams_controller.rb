@@ -17,7 +17,12 @@ class TeamsController < ApplicationController
     @user = current_user
     @team = Team.new(team_params)
     if @team.save
-      @user.team_memberships.create(:team_id => @team.id)
+      @user.team_memberships.create(team_id: @team.id)
+      member_ids = params[:member_ids]
+      member_ids.each do |id|
+        user = User.find(id)
+        user.team_memberships.create(team_id: @team.id)
+      end
       @team.admin_ids.push(@user.id)
       @team.save
       flash[:notice] = "Your team has been created!"

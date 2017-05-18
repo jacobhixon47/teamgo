@@ -15,6 +15,27 @@
         <%= devise_error_messages! %>
         <header class="form-header-pop">New Team</header>
         <%= f.text_field :name, class: 'input-light', placeholder: 'Team Name' %>
+        <div class="team-members-select">
+          <div class="f-row responsive">
+            <div class="f-col-1 flex-center">
+              <h4 class="text-light">Add Members</h4>
+            </div>
+            <div class="f-col-3">
+              <div class="f-row responsive members-select-list">
+                <% User.all.each do |user| %>
+                  <% if user.id != current_user.id %>
+                    <div class="f-col-2 flex-center">
+                      <div class="checkbox-light">
+                        <%= check_box_tag "member_ids[]", user.id, false, :id => user.id %>
+                        <%= label_tag user.id, user.username, false %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="actions">
           <div class="f-row">
             <%= f.submit "Create Team", class: 'btn-pop f-col-1 flex-center' %>
