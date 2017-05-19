@@ -1,10 +1,15 @@
 <div class="side-bar bg-pop" id="my-team-sidebar">
   <head>
     <h1 class="text-light"><%= @team.name %></h1>
-  </head><br><hr><br>
+    <% if @team.admin_ids.include? current_user.id %>
+      <p class="text-light">(You are an admin for this team)</p>
+    <% end %>
+  </head><hr><br>
   <div class="f-row responsive">
     <%= link_to "+ Channel", new_team_channel_path(@team), remote: true, class: 'f-col-1 btn-ghost-light' %>
-    <%= link_to "+ Members", edit_team_path(@team), remote: true, class: 'f-col-1 btn-ghost-light' %>
+    <% if @team.admin_ids.include? current_user.id %>
+      <%= link_to "+ Members", edit_team_path(@team), remote: true, class: 'f-col-1 btn-ghost-light' %>
+    <% end %>
   </div>
   <ul class="underline-light" id="public-channels-list">
     <h4 class="text-light">Public Channels</h4>
@@ -18,7 +23,9 @@
     <h4 class="text-light">Private Channels</h4>
     <% if @team.channels.where(is_public: false).any?  %>
       <% @team.channels.where(is_public: false).each do |channel| %>
+        <% if channel.member_ids.include? current_user.id %>
           <li><%= link_to channel.name, team_channel_path(@team, channel), remote: true %></li>
+        <% end %>
       <% end %>
     <% end %>
   </ul>

@@ -207,7 +207,7 @@ button a {
   color: $light;
   height: 100vh;
   max-height: 100vh;
-  background-color: $md-grey;
+  background-color: $color-pop;
   padding-top: 15vh;
   margin: 0px;
   text-align: center;
@@ -225,7 +225,7 @@ button a {
 
 .user-teams-column {
   overflow-y: scroll;
-  background-color: darken($md-grey, 10%);
+  background-color: darken($color-pop, 10%);
   .f-row .f-col-3 {
     text-align: center;
   }

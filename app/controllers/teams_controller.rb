@@ -40,33 +40,43 @@ class TeamsController < ApplicationController
 
   def edit
     @team = Team.find(params[:id])
-    @potential_users = []
-    User.all.each do |user|
-      if !user.teams.include? @team
-        @potential_users.push(user)
-      end
-    end
-    respond_to do |format|
-      format.html { redirect_to user_path(current_user) }
-      format.js
-    end
-  end
-
-  def update
-    @team = Team.find(params[:id])
-    member_ids = params[:member_ids]
-    if member_ids
-      member_ids.each do |id|
-        user = User.find(id)
-        user.team_memberships.create(team_id: @team.id)
+    if @team.admin_ids.include? current_user.id
+      @potential_users = []
+      User.all.each do |user|
+        if !user.teams.include? @team
+          @potential_users.push(user)
+        end
       end
       respond_to do |format|
         format.html { redirect_to user_path(current_user) }
         format.js
       end
-      flash[:notice] = "Successfully added!"
     else
-      render :edit
+      redirect_to user_path(current_user)
+      flash[:notice] = "Oops! Looks like you don't have permission to do that!"
+    end
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    if @team.admin_ids.include? current_user.id
+      member_ids = params[:member_ids]
+      if member_ids
+        member_ids.each do |id|
+          user = User.find(id)
+          user.team_memberships.create(team_id: @team.id)
+        end
+        respond_to do |format|
+          format.html { redirect_to user_path(current_user) }
+          format.js
+        end
+        flash[:notice] = "Successfully added!"
+      else
+        render :edit
+      end
+    else
+      redirect_to user_path(current_user)
+      flash[:notice] = "Oops! Looks like you don't have permission to do that!"
     end
   end
 
