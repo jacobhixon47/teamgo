@@ -3,14 +3,14 @@
     <% if message.user === current_user %>
         <li class="f-row responsive message-row">
           <div class="f-col-3 current-user-message-col">
-            <h4><%= message.user.username %> (you)</h4>
+            <h4><%= link_to message.user.username, user_path(message.user) %> (you)</h4>
             <p><%= message.content %></p>
           </div>
         </li>
     <% else %>
       <li class="f-row responsive message-row">
         <div class="f-col-3 foreign-user-message-col">
-          <h4><%= message.user.username %></h4>
+          <h4><%= link_to message.user.username, user_path(message.user) %></h4>
           <p><%= message.content %></p>
         </div>
       </li>
