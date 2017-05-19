@@ -1,0 +1,21 @@
+<div class="f-row responsive">
+  <div class="f-col-1 user-info-column">
+    <div class="profile-picture">
+      <%= image_tag "sea-windy.jpg" %>
+    </div>
+    <h1><%= @user.username %></h1>
+  </div>
+  <div class="f-col-3 user-teams-column">
+    <div class="f-row responsive">
+      <div class="f-col-3">
+        <h1>Administrated Teams</h1>
+        <% @owned_teams.each do |team| %>
+          <h4><%= link_to team.name, team_path(team) %></h4>
+        <% end %>
+      </div>
+      <div class="f-col-3">
+        <h1>Friends</h1>
+      </div>
+    </div>
+  </div>
+</div>

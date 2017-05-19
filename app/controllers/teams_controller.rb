@@ -6,6 +6,9 @@ class TeamsController < ApplicationController
   end
   def show
     @team = Team.find(params[:id])
+    if !@team.users.include? current_user
+      redirect_to new_user_team_path(current_user)
+    end
   end
 
   def new
