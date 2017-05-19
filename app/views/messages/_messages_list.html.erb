@@ -1,19 +1,19 @@
 <% if @channel.messages.all.any? %>
   <% @channel.messages.all.each do |message| %>
     <% if message.user === current_user %>
-        <li class="f-row responsive message-row">
+        <div class="f-row responsive message-row">
           <div class="f-col-3 current-user-message-col">
             <h4><%= link_to message.user.username, user_path(message.user) %> (you)</h4>
             <p><%= message.content %></p>
           </div>
-        </li>
+        </div>
     <% else %>
-      <li class="f-row responsive message-row">
+      <div class="f-row responsive message-row">
         <div class="f-col-3 foreign-user-message-col">
           <h4><%= link_to message.user.username, user_path(message.user) %></h4>
           <p><%= message.content %></p>
         </div>
-      </li>
+      </div>
     <% end %>
   <% end %>
 <% end %>
