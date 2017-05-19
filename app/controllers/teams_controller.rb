@@ -19,9 +19,11 @@ class TeamsController < ApplicationController
     if @team.save
       @user.team_memberships.create(team_id: @team.id)
       member_ids = params[:member_ids]
-      member_ids.each do |id|
-        user = User.find(id)
-        user.team_memberships.create(team_id: @team.id)
+      if member_ids
+        member_ids.each do |id|
+          user = User.find(id)
+          user.team_memberships.create(team_id: @team.id)
+        end
       end
       @team.admin_ids.push(@user.id)
       @team.save
@@ -30,6 +32,38 @@ class TeamsController < ApplicationController
     else
       flash[:alert] = "There was a problem creating your team. Please try again."
       render :new
+    end
+  end
+
+  def edit
+    @team = Team.find(params[:id])
+    @potential_users = []
+    User.all.each do |user|
+      if !user.teams.include? @team
+        @potential_users.push(user)
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user) }
+      format.js
+    end
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    member_ids = params[:member_ids]
+    if member_ids
+      member_ids.each do |id|
+        user = User.find(id)
+        user.team_memberships.create(team_id: @team.id)
+      end
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user) }
+        format.js
+      end
+      flash[:notice] = "Successfully added!"
+    else
+      render :edit
     end
   end
 

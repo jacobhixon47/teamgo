@@ -3,7 +3,8 @@
     <h1 class="text-light"><%= @team.name %></h1>
   </head><br><hr><br>
   <div class="f-row responsive">
-    <%= link_to "+ New Channel", new_team_channel_path(@team), remote: true, class: 'f-col-1 btn-ghost-light' %>
+    <%= link_to "+ Channel", new_team_channel_path(@team), remote: true, class: 'f-col-1 btn-ghost-light' %>
+    <%= link_to "+ Members", edit_team_path(@team), remote: true, class: 'f-col-1 btn-ghost-light' %>
   </div>
   <ul class="underline-light" id="public-channels-list">
     <h4 class="text-light">Public Channels</h4>
