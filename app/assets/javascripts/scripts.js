@@ -2,6 +2,7 @@ $(document).on("turbolinks:load", function() {
   // Nav class changes
   $('.sessions.new nav').removeClass('nav-ghost-pop').addClass('nav-ghost-light');
   $('.teams.new nav').removeClass('nav-ghost-pop').addClass('nav-ghost-light');
+  $('.users.show nav').removeClass('nav-ghost-pop').addClass('nav-ghost-light');
   // Scroll Animations - ScrollTo
   $("#learn-more-button-home").click(function() {
     $('#signup-form').show();
